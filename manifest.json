@@ -1,0 +1,92 @@
+{
+  "manifest_version": 3,
+  "name": "Bandlab+",
+  "version": "0.15.0",
+  "description": "More track colors and full themes for BandLab Studio (client-side only).",
+  "permissions": [
+    "storage"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Bandlab+ themes",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.bandlab.com/*",
+        "https://bandlab.com/*"
+      ],
+      "js": [
+        "theme.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://*.bandlab.com/*",
+        "https://bandlab.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://*.bandlab.com/*",
+        "https://bandlab.com/*"
+      ],
+      "js": [
+        "slicefix.js",
+        "eq.js",
+        "genius-send.js",
+        "monitor.js",
+        "presets.js"
+      ],
+      "run_at": "document_idle",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://genius.com/*"
+      ],
+      "js": [
+        "match.js",
+        "genius.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://postimages.org/*",
+        "https://postimg.cc/*"
+      ],
+      "js": [
+        "postimg.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "https://genius.com/*",
+    "https://*.genius.com/*",
+    "https://*.rapgenius.com/*",
+    "https://bl-prod-images.azureedge.net/*"
+  ]
+}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bandlab+</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="icons/icon48.png" alt="">
+    <div class="title">
+      <h1>Bandlab+</h1>
+      <p>Themes, layout &amp; audio for BandLab Studio</p>
+    </div>
+    <button id="popout" class="icon-btn" title="Open in a tab">⤢</button>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn" data-tab="themes">Themes</button>
+    <button class="tab-btn" data-tab="layout">Layout</button>
+    <button class="tab-btn" data-tab="audio">Audio</button>
+  </nav>
+
+  <div class="tab" data-tab="audio" hidden>
+    <section>
+      <h2>Microphone for every track</h2>
+      <div id="mics" class="mics"></div>
+      <p class="hint" id="micsHint">Used on every track: set when a project opens and whenever you switch tracks.</p>
+    </section>
+    <section>
+      <label class="field toggle big"><span>Always Channel 1 + 2<small>Every audio track records both input channels (stereo)</small></span><input type="checkbox" id="stereo"></label>
+    </section>
+  </div>
+
+  <div class="tab" data-tab="layout" hidden>
+    <section>
+      <label class="field toggle big"><span>Focus mode<small>Hides the top bar and bottom bar · <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd></small></span><input type="checkbox" id="focus"></label>
+    </section>
+  </div>
+
+
+  <div class="tab" data-tab="themes">
+  <section>
+    <h2>Themes</h2>
+    <div id="grid" class="grid"></div>
+  </section>
+
+  <section id="editor" hidden>
+    <div class="row-between">
+      <h2>Customize</h2>
+      <span id="dirty" class="dirty" hidden>unsaved</span>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Background</span><input type="color" data-k="primary"></label>
+      <label class="field"><span>Panels</span><input type="color" data-k="secondary"></label>
+      <label class="field"><span>Accent</span><input type="color" data-k="accent"></label>
+      <label class="field"><span>Text</span><input type="color" data-k="text"></label>
+      <label class="field"><span>Waveforms</span><input type="color" data-k="waveform1"></label>
+      <label class="field toggle"><span>Color waveforms</span><input type="checkbox" id="waveOn"></label>
+      <label class="field toggle"><span>Rainbow cycle</span><input type="checkbox" id="animated"></label>
+    </div>
+    <p class="hint">Tracks you colored with the right-click menu keep their own colors.</p>
+    <input id="name" class="text" placeholder="Theme name" maxlength="40">
+    <div class="buttons">
+      <button id="save" class="primary">Save</button>
+      <button id="saveNew">Save as new</button>
+      <button id="del" class="danger" hidden>Delete</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Share</h2>
+    <div class="buttons">
+      <button id="export">Export theme</button>
+      <button id="importBtn">Import file</button>
+      <input type="file" id="importFile" accept=".json,application/json" hidden>
+    </div>
+    <details>
+      <summary>Paste theme JSON</summary>
+      <textarea id="paste" class="text" rows="4" placeholder='{"name": "...", "colors": {...}}'></textarea>
+      <button id="pasteBtn">Import pasted</button>
+    </details>
+    <p class="hint">Theme files from "BandLab Theme Customizer" import too.</p>
+  </section>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
